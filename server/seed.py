@@ -15,23 +15,20 @@ usernames = [fake.first_name() for i in range(4)]
 if "Duane" not in usernames:
     usernames.append("Duane")
 
-def make_customers():
 
+def make_customers():
     Customer.query.delete()
-    
+
     customers = []
 
-    for i in range(3):
-        customer = Customer(
-            email=fake.email(),
-            age= randint(0, 125),
-            name=fake.name()
-        )
+    for i in range(6):
+        customer = Customer(email=fake.email(), age=randint(0, 125), name=fake.name())
         customers.append(customer)
 
     db.session.add_all(customers)
-    db.session.commit()        
+    db.session.commit()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     with app.app_context():
         make_customers()
